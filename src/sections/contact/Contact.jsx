@@ -190,17 +190,19 @@ const Contact = () => {
                 </motion.div>
                
                 {/*============ CONTACT INFO ============*/}
-                <motion.div 
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{amount: 0.2}}
-                    variants={containerVariants}
+                <div 
                     className="space-y-8">
                     <div className="space-y-4">
                             <motion.h3
                                 variants={fadeUp}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{amount: 0.2}} 
                              className="text-2xl md:text-3xl font-semibold text-white">Let's Connect</motion.h3>
                             <motion.p 
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{amount: 0.2}}
                                 variants={zoomIn}
                                 className="text-base md:text-lg font-normal text-white/60 leading-relaxed">
                              I'm always open to dicussing new projects, creative ideas, or opportunities to be part of your vision, Feel free to reach out!
@@ -210,6 +212,9 @@ const Contact = () => {
                     <div className="space-y-4">
                         {/*============ EMAIL ============*/}
                         <motion.div 
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{amount: 0.2}}
                             variants={slideRight}
                             className="">
                             <div className="group relative p-6 bg-white/5 border border-white/10 rounded-2xl hover:border-primary/30 transition-all duration-500">
@@ -232,7 +237,10 @@ const Contact = () => {
                         
 
                         {/*============ LOCATION ============*/}
-                        <motion.div 
+                        <motion.div
+                            initial="hidden"
+                                whileInView="visible"
+                                viewport={{amount: 0.2}} 
                             variants={zoomInRight}
                             className="">
                             <div className="group relative p-6 bg-white/5 border border-white/10 rounded-2xl hover:border-primary/30 transition-all duration-500">
@@ -257,6 +265,9 @@ const Contact = () => {
                     <div className="space-y-4">
                         <motion.p 
                             variants={bounceIn}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{amount: 0.2}}
                             className="text-sm text-white/60 font-normal">Connect with me</motion.p>
 
                         <div className="flex gap-3">
@@ -275,7 +286,7 @@ const Contact = () => {
                             ))}
                         </div>
                     </div>
-                </motion.div>
+                </div>
 
             </div>
         </motion.div>
