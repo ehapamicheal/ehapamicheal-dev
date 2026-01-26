@@ -202,7 +202,7 @@ export const experienceData = [
     role: "Frontend Engineer",
     company: "Halal",
     type: "Full Time",
-    description: "Sole Frontend Developer, responsible for designing and implementing the frontend architecture using Next.js, React, and TypeScript.",
+    description: "Built and maintained scalable, responsive web applications using Next.js and React, delivering user-friendly interfaces and integrating backend APIs and databases.",
     // technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"]
   },
   {
