@@ -16,7 +16,7 @@ export const socialLinks = [
     id: 1,
     name: "X (Twitter)",
     icon: <BsTwitterX />,
-    url: "https://x.com/EhapaMchea43916",
+    url: "https://x.com/ehapamicheal1",
   },
   {
     id: 2,
@@ -28,7 +28,7 @@ export const socialLinks = [
     id: 3,
     name: "Linkedin",
     icon: <LiaLinkedinIn />,
-    url: "https://www.linkedin.com/in/micheal-ehapa-3868a1242",
+    url: "https://www.linkedin.com/in/micheal-ehapa",
   },
 ]
 
