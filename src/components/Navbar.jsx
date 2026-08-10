@@ -6,6 +6,7 @@ import { containerVariants, slideLeft, zoomIn, zoomInLeft } from "@/animations";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiMenu } from "react-icons/fi";
 import { IoCloseOutline } from "react-icons/io5";
+import Image from "next/image";
 
 const Navbar = () => {
   const [activeLink, setActiveLink] = useState("home");
@@ -51,7 +52,8 @@ const Navbar = () => {
     }`}
   >
 
-      <div className="flex items-center justify-between px-6 py-4 lg:px-20 overflow-hidden">
+    {/* <div className="flex items-center justify-between px-6 py-4 lg:px-20 overflow-hidden"> */}
+    <div className="flex items-center justify-between px-5 py-4 md:px-7 xl:px-14 overflow-hidden">
       {/*============= Logo =============*/}
       <motion.div 
          initial="hidden"
@@ -59,8 +61,17 @@ const Navbar = () => {
         viewport={{amount: 0.2}}
         variants={zoomInLeft}
         className="">
-        <a href="#home" className="font-semibold flex items-center text-white">
+        {/* <a href="#home" className="font-semibold flex items-center text-white">
           <span className="text-primary text-[30px] md:text-[35px]">M</span><span className="text-[30px] hidden lg:block md:text-[35px]">icheal.</span>
+        </a> */}
+
+        <a href="#home">
+          <Image 
+            src="/svgs/logo.svg"
+            height={40}
+            width={40}
+            alt="Micheal Ehapa Logo"
+          />
         </a>
       </motion.div>
 
