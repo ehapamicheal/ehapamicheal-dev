@@ -14,13 +14,16 @@ const poppins = Poppins({
 export const metadata = {
   title: "Micheal Ehapa",
   description: "Personal portfolio website showcasing projects, skills, and experience",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={` ${poppins.variable} antialiased`}
+        className={`${poppins.variable} antialiased`}
       >
         <Navbar />
         <main>{children}</main>

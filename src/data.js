@@ -32,35 +32,24 @@ export const socialLinks = [
   },
 ]
 
-//
+// PROJECTS DATA
 export const projectData = [
+  // {
+  //   id: ,
+  //   name: "",
+  //   image: "/images/",
+  //   url: "",
+  //   technologies: ["Next.js", "Tailwind CSS", "Framer Motion", "Figma"],
+  // },
   {
     id: 1,
-    name: "TradeStack website",
-    image: "/images/tradestack-web2.png",
-    description: "Built for users who want speed, best rates, security, and control without switching apps or worrying about trust.",
-    url: "https://usetradestack.com",
-    technologies: ["Next.js", "Tailwind CSS", "Framer Motion", "Figma"],
+    name: "Onamini",
+    image: "/images/onamini.png",
+    url: "https://onamini.com",
+    technologies: ["Nextjs", "Tailwind CSS", "Framer Motion", "Figma"],
   },
   {
     id: 2,
-    name: "Read To Impact",
-    image: "/images/read-to-impact.png",
-    // description: "Books have the extraordinary ability to transform minds, uplift spirits, and build better communities.",
-    // description: "We provide support, and a platform for readers to connect, share, and grow together. At Read to Impact, we focus on several key initiatives to promote reading and literacy.",
-    url: "https://read-to-impact.vercel.app",
-    technologies: ["Next.js", "Tailwind CSS", "Framer Motion", "Figma"],
-  },
-   {
-    id: 3,
-    name: "Bfree",
-    image: "/images/bfree.png",
-    // description: "",
-    url: "https://crypto.bfree.cards",
-    technologies: ["html", "Css", "Figma", "javascript"],
-  },
-  {
-    id: 4,
     name: "nama africa",
     image: "/images/nama-sme.png",
     // description: "Experience God's love like never before. Loveworld UK Zone 4 DSP is a place where your faith grows, your life is changed, and the supernatural becomes your reality.",
@@ -68,7 +57,30 @@ export const projectData = [
     technologies: ["Nextjs", "Tailwind css", "framer motion", "figma", "swiperjs"],
   },
   {
+    id: 4,
+    name: "TradeStack website",
+    image: "/images/tradestack-web2.png",
+    description: "Built for users who want speed, best rates, security, and control without switching apps or worrying about trust.",
+    url: "https://usetradestack.com",
+    technologies: ["Next.js", "Tailwind CSS", "Framer Motion", "Figma"],
+  },
+  {
     id: 5,
+    name: "Bitlily 2.0",
+    image: "/images/bitlily-2.png",
+    url: "https://bitlily.vercel.app",
+    technologies: ["Next.js", "Tailwind CSS", "Framer Motion", "Typescript"],
+  },
+   {
+    id: 6,
+    name: "Bfree",
+    image: "/images/bfree.png",
+    // description: "",
+    url: "https://crypto.bfree.cards",
+    technologies: ["html", "Css", "Figma", "javascript"],
+  },
+  {
+    id: 7,
     name: "Bitlily",
     image: "/images/bitlily.png",
     // description: "",
@@ -76,15 +88,15 @@ export const projectData = [
     technologies: ["html", "CSS", "javascript"],
   },
   {
-    id: 6,
+    id: 8,
     name: "Love World Uk",
     image: "/images/love-world.png",
     // description: "Experience God's love like never before. Loveworld UK Zone 4 DSP is a place where your faith grows, your life is changed, and the supernatural becomes your reality.",
     url: "https://lwukzone4.org",
     technologies: ["Nextjs", "Tailwind css", "framer motion", "figma"],
   },
-    {
-    id: 7,
+  {
+    id: 9,
     name: "GigLedger",
     image: "/images/gigledger.png",
     // description: "",
@@ -92,7 +104,16 @@ export const projectData = [
     technologies: ["typescript", "tailwind css", "Next.js", "framer motion", "Swiperjs", "Figma"],
   },
   {
-    id: 8,
+    id: 10,
+    name: "Read To Impact",
+    image: "/images/read-to-impact.png",
+    // description: "Books have the extraordinary ability to transform minds, uplift spirits, and build better communities.",
+    // description: "We provide support, and a platform for readers to connect, share, and grow together. At Read to Impact, we focus on several key initiatives to promote reading and literacy.",
+    url: "https://read-to-impact.vercel.app",
+    technologies: ["Next.js", "Tailwind CSS", "Framer Motion", "Figma"],
+  },
+  {
+    id: 11,
     name: "Algo Experts",
     image: "/images/algo-img.png",
     // description: "",
@@ -100,7 +121,7 @@ export const projectData = [
     technologies: ["React", "CSS", "Figma"],
   },
   {
-    id: 9,
+    id: 12,
     name: "Gym Lenz",
     image: "/images/gym-lenz.png",
     // description: "",
@@ -197,7 +218,7 @@ export const skillsData = [
 // EXPERICENCE DATA
 export const experienceData = [
   {
-    id: 1,
+    id: "halal",
     period: "Nov 2025 - Present",
     role: "Frontend Engineer",
     company: "Halal",
@@ -206,16 +227,15 @@ export const experienceData = [
     // technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"]
   },
   {
-    id: 2,
+    id: "gemspread-publishing",
     period: "Jun 2025 - Sep 2025",
     role: "Frontend Developer",
     company: "Gemspread Publishing",
     type: "Contract",
     description: "Sole Frontend Developer, responsible for designing and implementing the frontend architecture using Next.js, React, and TypeScript.",
-    // technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"]
   },
   {
-    id: 3,
+    id: "pdsoft-technologies",
     period: "Sep 2023 – Feb 2025",
     role: "Frontend Developer",
     company: "PDSoft Technologies",
@@ -224,7 +244,15 @@ export const experienceData = [
       "Ensured the user interface was intuitive and user-friendly by implementing best practices in usability and interaction design.",
   },
   {
-    id: 4,
+    id: "the-qa-school",
+    period: "Nov 2024 – May 2025",
+    role: "Frontend Developer",
+    company: "The QA School",
+    type: "Volunteer",
+    description: "Designed and developed the entire ReactJS frontend for the HeritageHub web application, creating responsive, visually appealing, and user-friendly interfaces that delivered a seamless user experience aligned with project goals.",
+  },
+  {
+    id: "cyberbuddies-ltd",
     period: "Dec 2023 – Jun 2024",
     role: "Frontend Developer",
     company: "Cyberbuddies Ltd",
@@ -233,7 +261,7 @@ export const experienceData = [
       "Built and enhanced web applications using HTML, CSS, and JavaScript with a focus on responsiveness and clean UI.",
   },
   {
-    id: 5,
+    id: "tech-diversity",
     period: "Dec 2022 – Jul 2023",
     role: "Junior Frontend Developer",
     company: "Tech Diversity",
@@ -242,7 +270,7 @@ export const experienceData = [
       "Collaborated with designers and developers to build responsive websites following industry best practices.",
   },
   {
-    id: 6,
+    id: "top-universe-africa",
     period: "Mar 2021 – Aug 2021",
     role: "Frontend Developer",
     company: "Top Universe Africa",

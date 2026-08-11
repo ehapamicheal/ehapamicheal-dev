@@ -5,8 +5,48 @@ import { containerVariants, zoomInLeft, zoomIn } from "@/animations";
 import { motion } from "framer-motion";
 import { projectData } from "@/data";
 import { RiExternalLinkLine } from "react-icons/ri";
+import { useState } from "react";
 
 const Projects = () => {
+    const [showAllProjects, setShowAllProjects] = useState(false);
+
+    const displayedProjects = showAllProjects ? projectData : projectData.slice(0, 6);
+
+
+    // const handleShowMore = () => {
+    //     setShowAllProjects((prev) => {
+    //         const next = !prev;
+
+    //         // only scroll when collapsing
+    //         if (prev === true) {
+    //         const section = document.getElementById("projects");
+    //         section?.scrollIntoView({ behavior: "smooth", block: "start" });
+    //         }
+
+    //         return next;
+    //     });
+    // };
+
+    const handleShowMore = () => {
+        if (showAllProjects) {
+            setShowAllProjects(false);
+
+            requestAnimationFrame(() => {
+            const button = document.getElementById("show-more-projects");
+
+            button?.scrollIntoView({
+                behavior: "instant",
+                // behavior: "smooth",
+                block: "center",
+            });
+            });
+
+            return;
+        }
+
+        setShowAllProjects(true);
+    };
+
   return (
     <div className="py-20 px-5 md:px-7 xl:px-14 bg-second-bg-color">
         <motion.div 
@@ -25,7 +65,7 @@ const Projects = () => {
             </motion.h2>
 
             <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8 mt-12">
-                {projectData.map((project) => (
+                {displayedProjects.map((project) => (
                         <motion.div 
                         initial="hidden"
                         whileInView="visible"
@@ -84,6 +124,22 @@ const Projects = () => {
                     </motion.div>  
                 ))}       
             </div>
+            
+
+            {/*============ Show more and less Button  ============ */}
+            {projectData.length > 6 && (
+                <div className="mt-10 flex justify-center">
+                    <button
+                        type="button"
+                        id="show-more-projects"
+                        onClick={handleShowMore}
+                        className="relative inline-flex cursor-pointer items-center justify-center px-4 py-4 bg-transparent border-2 border-primary rounded-xl text-sm md:text-base font-semibold tracking-[1.6px] text-primary overflow-hidden z-10 transition-colors duration-500 before:content-[''] before:absolute before:top-0 before:left-0 before:w-0 before:h-full before:bg-primary before:-z-10 before:transition-all before:duration-500 hover:text-bg-color hover:before:w-full"
+                    >
+                        {showAllProjects ? "Show Less" : "Show More"}
+                    </button>
+                </div>
+            )}
+
         </motion.div>
       
     </div>
