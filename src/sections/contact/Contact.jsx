@@ -251,7 +251,8 @@ const Contact = () => {
 
                                     <div className="space-y-1 flex-1">
                                         <p className="text-sm text-white/60 font-normal">Location</p>
-                                        <p className="text-white transition-colors duration-300 font-medium">Ibadan, Nigeria</p>
+                                        {/* <p className="text-white transition-colors duration-300 font-medium">Ibadan, Nigeria</p> */}
+                                        <p className="text-white transition-colors duration-300 font-medium">Nigeria</p>
                                     </div>
                                 </div>
 
