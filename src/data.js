@@ -75,7 +75,6 @@ export const projectData = [
     id: 6,
     name: "Bfree",
     image: "/images/bfree.png",
-    // description: "",
     url: "https://crypto.bfree.cards",
     technologies: ["html", "Css", "Figma", "javascript"],
   },
@@ -83,7 +82,6 @@ export const projectData = [
     id: 7,
     name: "Bitlily",
     image: "/images/bitlily.png",
-    // description: "",
     url: "https://app.bitlily.io",
     technologies: ["html", "CSS", "javascript"],
   },
@@ -116,7 +114,6 @@ export const projectData = [
     id: 11,
     name: "Algo Experts",
     image: "/images/algo-img.png",
-    // description: "",
     url: "https://algo-experts.vercel.app",
     technologies: ["React", "CSS", "Figma"],
   },
@@ -124,10 +121,16 @@ export const projectData = [
     id: 12,
     name: "Gym Lenz",
     image: "/images/gym-lenz.png",
-    // description: "",
     url: "https://gym-lenz-iota.vercel.app",
     technologies: ["React", "CSS"],
   },
+  {
+    id: 13,
+    name: "Tvflix Movies",
+    image: "/images/tvflix-img.png",
+    url: "https://ehapamicheal.github.io/tvflix",
+    technologies: ["html", "CSS", "TMDB api", "javascript"],
+  }
  
 
   // {
