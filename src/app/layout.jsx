@@ -1,15 +1,20 @@
-import { Poppins } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Toaster } from "react-hot-toast";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 
-const poppins = Poppins({
-  variable: "--font-poppins",
+const geistSans = Geist({
+  variable: "--font-geist-sans",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"]
-})
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
 
 export const metadata = {
   title: "Micheal Ehapa",
@@ -21,14 +26,23 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body
-        className={`${poppins.variable} antialiased`}
+    <html lang="en"
+      suppressHydrationWarning
+      className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body 
+          className="min-h-screen"
       >
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
-        <Toaster position="top-right" />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+          disableTransitionOnChange
+        >
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+          <Toaster position="top-right" />
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -1,129 +1,60 @@
 "use client";
 
 
-import { fadeUp, containerVariants, slideRight,  zoomIn, zoomCard } from "@/animations";
+import { fadeUp, containerVariants, slideRight, zoomCard, slideLeft } from "@/animations";
 import { motion} from "framer-motion";
 import { experienceData, educationData } from "@/data";
 import EducationCard from "@/components/ui/EducationCard";
+import SectionHeader from '@/components/ui/SectionHeader';
 
 const Experience = () => {
 
 
   return (
-    <div className="py-20 bg-bg-color">
-    
-        <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{amount: 0.2}}
-            variants={containerVariants}
-            className="px-5 md:px-7 xl:px-14">
-
-
-            <div className="text-center mb-9 overflow-hidden">
-                <motion.h2
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{amount: 0.2}}
-                    variants={zoomIn} 
-                    className="text-4xl lg:text-5xl text-white font-semibold mb-16">
-                    My <span className="text-primary">Journey</span>
-                </motion.h2>
-
-
-                <motion.h3 
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{amount: 0.2}}
-                    variants={slideRight}
-                    className="text-2xl font-semibold text-white">
-                    Experience
-                </motion.h3>
+    <section id="experience" className="border-y border-border bg-surface py-24 md:py-32">
+        <div className="px-4 md:px-6 responsive_container lg:w-[90%]">
+            {/*============= HEADER =============*/}
+            <div className="overflow-hidden">
+                <SectionHeader
+                    index="03"
+                    label="Experience"
+                    title="Where I've been building."
+                    description="Roles across startups, agencies and product teams — from intern to sole frontend developer."
+                    variants={slideLeft}
+                />
             </div>
 
             {/*============= EXPERIENCE =============*/}
-            <motion.div 
-                initial="hidden"
-                whileInView="visible"
-                viewport={{amount: 0.2}}
-                variants={containerVariants}
-                className="relative">
-                <motion.div 
-                    //  initial="hidden"
-                    // whileInView="visible"
-                    // viewport={{amount: 0.2}}
-                    // variants={containerVariants}
-                    className="grid md:grid-cols-2 gap-8 md:gap-8">
-                    {experienceData.map((item, index) => (
-                        <motion.div
-                        key={item.id}
+            <ol className="border-t border-border">
+                {experienceData.map((job) => (
+                    <motion.li
+                        key={job.id}
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ amount: 0.2 }}
                         variants={fadeUp}
-                        className="relative h-full"
-                        >
-                        {/* Timeline circle on the left border of each card */}
-                        <div className="absolute -left-2 top-8 z-10">
-                            <motion.div 
-                            initial={{ scale: 0 }}
-                            whileInView={{ scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-                            className="w-6 h-6 rounded-full bg-primary border-4 border-gray-2/80 shadow-lg shadow-primary/50"
-                            />
+                        className="group grid gap-2 border-b border-border py-7 transition-colors duration-300 md:grid-cols-[200px_1fr_auto] md:gap-8 md:px-4 md:hover:bg-background"
+                        >        
+                        <p className="font-mono text-xs text-muted md:pt-1">{job.period}</p>
+
+                        <div>
+                            <h3 className="text-lg font-semibold tracking-tight">
+                                {job.role}{" "}
+                                <span className="text-muted transition-colors duration-300 group-hover:text-primary">
+                                · {job.company}
+                                </span>
+                            </h3>
+                            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">
+                                {job.description}
+                            </p>
                         </div>
-        
-                        {/* Content card */}
-                        <div className="h-full">
-                            <div className="h-full group border-l-4 border-l-primary border-r border-t border-b border-white/10 hover:border-primary/50 bg-white/5 hover:bg-white/10 backdrop-blur-sm rounded-2xl overflow-hidden transition-all duration-500 shadow-xl hover:shadow-2xl hover:shadow-primary/10">
-                            {/* Top border accent */}
-                            <div className="h-1 bg-linear-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                            
-                            <div className="p-6 md:p-8 space-y-4">
-                                {/* Period badge */}
-                                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-primary/10 border border-primary/20 rounded-full">
-                                    <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                                    <span className="text-primary text-sm font-medium">{item.period}</span>
-                                </div>
-        
-                                {/* Role and company */}
-                                <div className="space-y-2">
-                                <h3 className="text-white text-xl md:text-2xl font-bold group-hover:text-primary transition-colors duration-300">
-                                    {item.role}
-                                </h3>
-                                <div className="flex flex-col ms:flex-row ms:items-center gap-3 text-slate-300">
-                                    <span className="font-semibold">{item.company}</span>
-                                    <span className="text-slate-500 hidden ms:block">•</span>
-                                    <span className="px-2 py-1 w-fit bg-slate-800/50 rounded-lg text-sm border border-primary/20">{item.type}</span>
-                                </div>
-                                </div>
-        
-                                {/* Description */}
-                                <p className="text-slate-400 leading-relaxed">
-                                    {item.description}
-                                </p>
-        
-                                {/* Technologies */}
-                                {/* <div className="flex flex-wrap gap-2 pt-2">
-                                {item.technologies.map((tech, i) => (
-                                    <span
-                                    key={i}
-                                    className="px-3 py-1.5 bg-slate-800/50 hover:bg-slate-800 border border-slate-700/50 hover:border-cyan-500/30 rounded-lg text-sm text-slate-300 hover:text-cyan-400 transition-all duration-300"
-                                    >
-                                    {tech}
-                                    </span>
-                                ))}
-                                </div> */}
-                            </div>
-                            </div>
-                        </div>
-                        </motion.div>
-                    ))}
-                </motion.div>
-            
-                        
-            </motion.div>
+
+                        <span className="h-fit w-fit rounded-full border border-border bg-background px-3 py-1 text-xs text-muted">
+                            {job.type}
+                        </span>
+                    </motion.li>
+                ))}
+            </ol>
 
             {/*============= EDUCATION =============*/}
             <motion.div 
@@ -133,15 +64,17 @@ const Experience = () => {
                 variants={containerVariants}
                 className="mt-20 pt-8 overflow-hidden">
                 <motion.h3 
-                        initial="hidden"
+                    initial="hidden"
                     whileInView="visible"
                     viewport={{amount: 0.2}}
                     variants={slideRight}
-                    className="text-2xl font-semibold text-center text-white">
+                    className="mb-8 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.2em] text-muted">
+                    <span className="text-primary">03.1</span>
+                    <span className="h-px w-8 bg-border" />
                     Education
                 </motion.h3>
 
-                <div className="grid md:grid-cols-2 xl:grid-cols-3 mt-10 gap-4 md:gap-8">
+                <div className="grid md:grid-cols-2 xl:grid-cols-3 mt-10 gap-4">
                     {educationData.map((item, i) => (
                         <motion.article 
                             key={item.id}
@@ -161,8 +94,8 @@ const Experience = () => {
                 </div>
             </motion.div>
             
-        </motion.div>
-    </div>
+        </div>
+    </section>
   )
 }
 
