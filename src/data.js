@@ -1,10 +1,52 @@
+// ========================= NAVLINKS =========================
 export const navLinks = [
-  { id: "home", label: "Home" },
+  { id: "services", label: "Services" },
   { id: "projects", label: "Projects" },
   { id: "experience", label: "Experience" },
   { id: "skills", label: "Skills" },
   { id: "contact", label: "Contact" },
 ];
+
+// ========================= STATS =========================
+export const stats = [
+  { value: "3+", label: "Years building for the web" },
+  { value: "7", label: "Teams shipped with" },
+  { value: "6+", label: "Featured projects live" },
+];
+
+// ========================= SERVICES =========================
+import { Pen, Code, Bolt, Plug } from "lucide-react";
+
+export const services = [
+  {
+    id: 1,
+    title: "Frontend Development",
+    description:
+      "Production-ready web apps with Next.js, React and TypeScript — structured to scale and easy to maintain.",
+    icon: Code,
+  },
+  {
+    id: 2,
+    title: "Design to Code",
+    description:
+      "Pixel-perfect, responsive interfaces translated faithfully from Figma, down to spacing and motion.",
+    icon: Pen,
+  },
+  {
+    id: 3,
+    title: "Performance & Accessibility",
+    description:
+      "Fast loads, smooth interactions and accessible markup so every user gets a great experience.",
+    icon: Bolt,
+  },
+  {
+    id: 4,
+    title: "API Integration",
+    description:
+      "Wiring interfaces to REST APIs with TanStack Query and Redux Toolkit for reliable, real-time data.",
+    icon: Plug,
+  },
+] 
 
 import { BsTwitterX } from "react-icons/bs";
 import { BiLogoGithub } from "react-icons/bi";
@@ -16,23 +58,23 @@ export const socialLinks = [
     id: 1,
     name: "X (Twitter)",
     icon: <BsTwitterX />,
-    url: "https://x.com/ehapamicheal1",
+    url: ExternalLinks.socials.x,
   },
   {
     id: 2,
     name: "GitHub",
     icon: <BiLogoGithub  />,
-    url: "https://github.com/ehapamicheal",
+    url: ExternalLinks.socials.github,
   },
   {
     id: 3,
     name: "Linkedin",
     icon: <LiaLinkedinIn />,
-    url: "https://www.linkedin.com/in/micheal-ehapa",
+    url: ExternalLinks.socials.linkedin,
   },
 ]
 
-// PROJECTS DATA
+//========================= PROJECTS DATA =========================
 export const projectData = [
   // {
   //   id: ,
@@ -44,22 +86,21 @@ export const projectData = [
   {
     id: 1,
     name: "Onamini",
-    image: "/images/onamini.png",
+    image: "/images/onamini-2.png",
     url: "https://onamini.com",
     technologies: ["Nextjs", "Tailwind CSS", "Framer Motion", "Figma"],
   },
   {
     id: 2,
     name: "nama africa",
-    image: "/images/nama-sme.png",
-    // description: "Experience God's love like never before. Loveworld UK Zone 4 DSP is a place where your faith grows, your life is changed, and the supernatural becomes your reality.",
+    image: "/images/nama-2.png",
     url: "https://nama.africa",
     technologies: ["Nextjs", "Tailwind css", "framer motion", "figma", "swiperjs"],
   },
   {
     id: 4,
     name: "TradeStack website",
-    image: "/images/tradestack-web2.png",
+    image: "/images/tradestack-web-2.png",
     description: "Built for users who want speed, best rates, security, and control without switching apps or worrying about trust.",
     url: "https://usetradestack.com",
     technologies: ["Next.js", "Tailwind CSS", "Framer Motion", "Figma"],
@@ -67,44 +108,42 @@ export const projectData = [
   {
     id: 5,
     name: "Bitlily 2.0",
-    image: "/images/bitlily-2.png",
+    image: "/images/bitlily-3.png",
     url: "https://bitlily.vercel.app",
     technologies: ["Next.js", "Tailwind CSS", "Framer Motion", "Typescript"],
   },
    {
     id: 6,
     name: "Bfree",
-    image: "/images/bfree.png",
+    image: "/images/bfree-2.png",
     url: "https://crypto.bfree.cards",
     technologies: ["html", "Css", "Figma", "javascript"],
   },
   {
     id: 7,
     name: "Bitlily",
-    image: "/images/bitlily.png",
+    image: "/images/bitlily-5.png",
     url: "https://app.bitlily.io",
     technologies: ["html", "CSS", "javascript"],
   },
   {
     id: 8,
     name: "Love World Uk",
-    image: "/images/love-world.png",
-    // description: "Experience God's love like never before. Loveworld UK Zone 4 DSP is a place where your faith grows, your life is changed, and the supernatural becomes your reality.",
+    image: "/images/love-world-2.png",
     url: "https://lwukzone4.org",
     technologies: ["Nextjs", "Tailwind css", "framer motion", "figma"],
   },
   {
     id: 9,
-    name: "GigLedger",
-    image: "/images/gigledger.png",
-    // description: "",
-    url: "https://gigledger-omega.vercel.app",
-    technologies: ["typescript", "tailwind css", "Next.js", "framer motion", "Swiperjs", "Figma"],
+    name: "Lilly's empire",
+    image: "/images/lillys-empire.png",
+    url: "https://lillys-empire.vercel.app",
+    technologies: ["typescript", "tailwind css", "Next.js", "framer motion", "Redux", "Json server"],
   },
   {
     id: 10,
     name: "Read To Impact",
-    image: "/images/read-to-impact.png",
+    image: "/images/read-to-impact-2.png",
     // description: "Books have the extraordinary ability to transform minds, uplift spirits, and build better communities.",
     // description: "We provide support, and a platform for readers to connect, share, and grow together. At Read to Impact, we focus on several key initiatives to promote reading and literacy.",
     url: "https://read-to-impact.vercel.app",
@@ -112,25 +151,32 @@ export const projectData = [
   },
   {
     id: 11,
-    name: "Algo Experts",
-    image: "/images/algo-img.png",
-    url: "https://algo-experts.vercel.app",
-    technologies: ["React", "CSS", "Figma"],
+    name: "Tvflix Movies",
+    image: "/images/tvflix-1.png",
+    url: "https://ehapamicheal.github.io/tvflix",
+    technologies: ["html", "CSS", "TMDB api", "javascript"],
   },
   {
     id: 12,
     name: "Gym Lenz",
-    image: "/images/gym-lenz.png",
+    image: "/images/gym-lenz-2.png",
     url: "https://gym-lenz-iota.vercel.app",
     technologies: ["React", "CSS"],
   },
-  {
+   {
     id: 13,
-    name: "Tvflix Movies",
-    image: "/images/tvflix-img.png",
-    url: "https://ehapamicheal.github.io/tvflix",
-    technologies: ["html", "CSS", "TMDB api", "javascript"],
-  }
+    name: "Algo Experts",
+    image: "/images/algo-2.png",
+    url: "https://algo-experts.vercel.app",
+    technologies: ["React", "CSS", "Figma"],
+  },
+  {
+    id: 14,
+    name: "GigLedger",
+    image: "/images/gigledger-2.png",
+    url: "https://gigledger-omega.vercel.app",
+    technologies: ["typescript", "tailwind css", "Next.js", "framer motion", "Swiperjs", "Figma"],
+  },
  
 
   // {
@@ -197,6 +243,7 @@ import {
   SiReactquery,
   SiPostman
 } from "react-icons/si";
+import { ExternalLinks } from "./constants/external-links";
 
 export const skillsData = [
   { id: 1, name: "React.js", icon: FaReact },

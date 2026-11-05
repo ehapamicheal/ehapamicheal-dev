@@ -1,5 +1,5 @@
 export * from "./containerVariants";
-export * from "./scaleIn";
+export * from "./scaleAnimations"
 export {greet} from "./greet";
 export * from "./flipAnimations";
 export * from "./zoomAnimations";

@@ -2,161 +2,192 @@
 
 import { useEffect, useState } from "react";
 import { navLinks } from "@/data";
-import { containerVariants, slideLeft, zoomIn, zoomInLeft } from "@/animations";
+import { containerVariants, fadeUp, scaleUp, zoomIn } from "@/animations";
 import { motion, AnimatePresence } from "framer-motion";
-import { FiMenu } from "react-icons/fi";
 import { IoCloseOutline } from "react-icons/io5";
 import Image from "next/image";
+import ThemeToggle from "./ThemeToggle";
+import { ArrowUpRightIcon, MenuIcon } from "lucide-react";
+import { ExternalLinks } from "@/constants/external-links";
+import clsx from "clsx";
 
 const Navbar = () => {
-  const [activeLink, setActiveLink] = useState("home");
-  const [isSticky, setIsSticky] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleOpen = () => {
-    setIsOpen(!isOpen);
-  }
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("home");
 
 
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = document.querySelectorAll("section");
+    const onScroll = () => setScrolled(window.scrollY > 16);
 
-      sections.forEach((section) => {
-        const offset = section.offsetTop - 120;
-        const height = section.offsetHeight;
-        const id = section.getAttribute("id");
+    onScroll();
 
-        if (
-          window.scrollY >= offset &&
-          window.scrollY < offset + height
-        ) {
-          setActiveLink(id);
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    const sectionIds = ["home", ...navLinks.map(({ id }) => id)];
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleSections = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort(
+            (a, b) =>
+              Math.abs(a.boundingClientRect.top - window.innerHeight * 0.45) -
+              Math.abs(b.boundingClientRect.top - window.innerHeight * 0.45),
+          );
+
+        if (visibleSections.length > 0) {
+          setActive(visibleSections[0].target.id);
         }
-      });
+      },
+      {
+        rootMargin: "-35% 0px -55% 0px",
+        threshold: 0,
+      },
+    );
 
-      setIsSticky(window.scrollY > 100);
-      setIsOpen(false); 
+    sectionIds.forEach((id) => {
+      const section = document.getElementById(id);
+
+      if (section) observer.observe(section);
+    });
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      observer.disconnect();
     };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+  
+
 
   return (
-    <nav
-    className={`fixed top-0 left-0 w-full z-50 transition-all duration-300
-    ${isSticky
-      ? "bg-bg-color/60 backdrop-blur-xl"
-      : "bg-bg-color"
-    }`}
-  >
+    <nav className="fixed inset-x-0 top-0 z-50 px-4 pt-3">
+      <div 
+        className={`relative responsive_container md:w-[93%] flex items-center justify-between rounded-full border px-3 py-2 transition-all duration-500 ${
+            scrolled
+              ? "border-border bg-background/75 shadow-soft backdrop-blur-xl"
+              : "border-transparent bg-transparent"
+          }`}
+        >
+        {/*============= Logo =============*/}
+        <motion.div 
+          initial="hidden"
+          animate="visible"
+          variants={scaleUp}
+          className="">
+          <a href="#home"
+            aria-label="Home">
+            <Image 
+              src="/svgs/logo.svg"
+              height={32}
+              width={32}
+              alt="Micheal Ehapa Logo"
+              priority
+            />
+          </a>
+        </motion.div>
 
-    {/* <div className="flex items-center justify-between px-6 py-4 lg:px-20 overflow-hidden"> */}
-    <div className="flex items-center justify-between px-5 py-4 md:px-7 xl:px-14 overflow-hidden">
-      {/*============= Logo =============*/}
-      <motion.div 
-         initial="hidden"
-        whileInView="visible"
-        viewport={{amount: 0.2}}
-        variants={zoomInLeft}
-        className="">
-        {/* <a href="#home" className="font-semibold flex items-center text-white">
-          <span className="text-primary text-[30px] md:text-[35px]">M</span><span className="text-[30px] hidden lg:block md:text-[35px]">icheal.</span>
-        </a> */}
-
-        <a href="#home">
-          <Image 
-            src="/svgs/logo.svg"
-            height={40}
-            width={40}
-            alt="Micheal Ehapa Logo"
-          />
-        </a>
-      </motion.div>
-
-      {/*============= DESKTOP NAVIGATION =============*/}
-      <div className="hidden lg:flex">
+        {/*============= DESKTOP NAVIGATION =============*/}
         <motion.ul 
           initial="hidden"
-          whileInView="visible"
-          viewport={{amount: 0.2}}
+          animate="visible"
           variants={containerVariants}
-          className="flex flex-row items-center gap-8">
+          className="hidden lg:flex flex-row items-center gap-2">
             {navLinks.map((link) => (
               <motion.li 
                 variants={zoomIn}
                 key={link.id}>
                 <a
                   href={`#${link.id}`}
-                  className={`text-lg transition duration-500 ${
-                    activeLink === link.id
-                      ? "text-primary font-bold"
-                      : "text-white hover:text-primary font-semibold"
+                  className={`relative isolate rounded-full px-3.5 py-1.5 text-sm md:text-base transition-colors ${
+                    active === link.id
+                      ? "text-foreground"
+                      : "text-muted hover:text-primary duration-300"
                   }`}
                 >
+                  {active === link.id && (
+                    <motion.span
+                      layoutId="nav-pill"
+                      className="absolute inset-0 -z-10 rounded-full bg-surface ring-1 ring-border"
+                      transition={{ type: "spring", stiffness: 400, damping: 34 }}
+                    />
+                  )}
                   {link.label}
                 </a>
               </motion.li>
             ))}
-          </motion.ul>
-      </div>
+        </motion.ul>
 
-      {/*============= MOBILE MENU =============*/}
-      <div className="lg:hidden">
-        <button type="button"
-          aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
-          aria-expanded={isOpen}
-          aria-controls="mobile-navigation"
-          className="cursor-pointer w-8 h-8 hover:bg-primary/10 transition-colors duration-300 group rounded-sm flex items-center justify-center"
-          onClick={handleOpen}
-        >
-          {isOpen ? <IoCloseOutline className="text-primary text-2xl group-hover:rotate-90 duration-700 transition-transform inline-flex" /> : <FiMenu className="text-primary text-2xl inline-flex" />}
-        </button>
-      </div>
+        {/*============= MOBILE MENU =============*/}
+        <motion.div 
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          className="flex items-center gap-2">
+          <ThemeToggle />
 
-      {/*============= MOBILE NAVIGATION =============*/}
-      <AnimatePresence mode="wait">
-        {isOpen && (
-          <motion.div 
-          initial={{ opacity: 0, x: 80,  }}
-          animate={{ opacity: 1, x: 0, }}
-          exit={{ opacity: 0, x: 80,}}
-          transition={{duration: 0.6, ease: "easeInOut"}}
-            className="absolute top-25 left-0 w-full z-40 h-screen px-6 lg:hidden"
+          <a
+            href={ExternalLinks.bookCallUrl}
+            target="_blank"
+            rel="noreferrer"
+            // className=""
+            // className={`${btnPrimary} max-sm:hidden`}
+            className="group hidden lg:inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-white shadow-soft-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary-hover hover:shadow-soft-primary active:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           >
-            <div className="bg-linear-to-r from-bg-color via-black to-bg-color z-50 backdrop-blur-xl border border-primary px-4 py-8 w-full max-w-xl mx-auto rounded-2xl overflow-hidden">
-              <motion.ul 
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
-                className="flex flex-col items-center gap-6">    
+            Book a call
+            <ArrowUpRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
+
+          <button
+            type="button"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+            className="flex size-9 items-center cursor-pointer justify-center rounded-full border border-border lg:hidden"
+          >
+            {open ? <IoCloseOutline className="size-4" /> : <MenuIcon className="size-4" />}
+          </button>
+        </motion.div>
+
+        {/*============= MOBILE NAVIGATION =============*/}
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              initial={{ opacity: 0, y: -8, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -8, scale: 0.98 }}
+              transition={{ duration: 0.25, ease: "easeInOut" }}
+              className="absolute top-17 left-0 w-full rounded-3xl border border-border bg-background/95 p-3 shadow-soft-lg backdrop-blur-xl md:hidden"
+            >
+              <ul className="flex flex-col px-4 space-y-4">
                 {navLinks.map((link) => (
-                  <motion.li
-                    variants={slideLeft}
-                     key={link.id}>
-                    <a  
+                  <li key={link.id}>
+                    <a
                       href={`#${link.id}`}
-                      className={`text-base ms:text-lg transition duration-300 ${
-                        activeLink === link.id
-                          ? "text-primary font-bold"
-                          : "text-white hover:text-primary font-semibold" 
-                      }`}
-                      onClick={handleOpen}
+                      onClick={() => setOpen(false)}
+                      className={clsx("block text-sm transition-colors",
+                        active === link.id ? "text-primary" : "hover:text-foreground duration-300 text-muted"
+                      )}
                     >
                       {link.label}
                     </a>
-                  </motion.li>     
+                  </li>
                 ))}
-              </motion.ul>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-        
+              </ul>
 
-    
-    </div>
+              <a
+                href={ExternalLinks.bookCallUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-3 w-full group inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-white shadow-soft-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary-hover hover:shadow-soft-primary active:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              >
+                Book a call
+                <ArrowUpRightIcon className="size-4" />
+              </a>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </nav>
   );
 };

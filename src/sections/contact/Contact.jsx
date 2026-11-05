@@ -2,15 +2,20 @@
 
 
 import { useState } from "react";
-import { fadeUp, containerVariants, scaleIn, slideLeft, slideRight,  zoomInUp, zoomIn, zoomInRight, bounceIn } from "@/animations";
+import { slideLeft, slideRight, zoomInRight } from "@/animations";
 import { motion} from "framer-motion";
 import { socialLinks } from "@/data";
 import { LuSend } from "react-icons/lu";
 import toast from "react-hot-toast";
 import { IoLocationOutline } from "react-icons/io5";
-import { FiMessageSquare } from "react-icons/fi";
-import { MdOutlineEmail } from "react-icons/md";
+import SectionHeader from '@/components/ui/SectionHeader';
+import { ExternalLinks } from "@/constants/external-links";
+import { ArrowRightIcon, MailIcon, } from "lucide-react";
+import clsx from "clsx";
 
+
+
+const field = "w-full rounded-2xl border border-border bg-background px-4 py-3 text-sm outline-none transition-all duration-300 placeholder:text-muted/70 focus:border-primary focus:ring-4 focus:ring-primary/10";
 
 const Contact = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -36,6 +41,7 @@ const Contact = () => {
             toast.error("Please fill in all fields");
             return;
         }
+
 
         setIsSubmitting(true);
 
@@ -75,223 +81,168 @@ const Contact = () => {
 
 
 
-
   return (
-   <div className="relative bg-bg-color py-20">
-        <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 opacity-30 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/20 opacity-30 rounded-full blur-3xl" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/10 opacity-30 rounded-full blur-3xl" />
-        </div>
-
-        <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{amount: 0.2}} 
-            variants={containerVariants}
-            className="relative z-10 px-5 md:px-7 xl:px-14 overflow-hidden">
+    <section id="contact" className="py-24 md:py-32">
+        <div
+            className="px-4 md:px-6 responsive_container lg:w-[90%]">
             {/*============ HEADER ============*/}
-            <div className="text-center mb-16 space-y-6">
-                <motion.div 
-                    variants={zoomInUp}
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/30 rounded-full">
-                    <FiMessageSquare className="text-base text-primary" />
-                    <h4 className="text-sm text-primary font-medium tracking-wider uppercase">Get In Touch</h4>
-                </motion.div>
+            <SectionHeader
+                index="05"
+                label="Contact"
+                title="Let's build something great together."
+                description="Have a project in mind or an opportunity to share? I'm always open to new ideas."
+                variants={zoomInRight}
+            />
 
-                <div className="space-y-4">
-                    <motion.h2
-                        variants={fadeUp} 
-                        className="text-4xl lg:text-5xl text-white font-semibold leading-tight">Let's <span className="text-primary">Work</span> Together</motion.h2>
-                    <motion.p 
-                        variants={scaleIn}
-                        className="text-base ms:text-lg text-white/60 font-normal w-full max-w-2xl mx-auto">
-                        Have a project in mind? let's dicuss how we can bring your ideas to life.
-                    </motion.p>
-                </div>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-12 overflow-hidden">
+            <div className="grid gap-6 md:grid-cols-[1fr_1.3fr] overflow-hidden">
+                {/*============ Contact ============*/}
                 <motion.div 
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{amount: 0.2}} 
                     variants={slideLeft}
-                    className="h-full">
-                    <div className="bg-white/5 border h-full border-white/10 hover:border-primary/30 transition-all duration-300 rounded-2xl py-8 px-4 xl:px-8">
-                        <form className="space-y-6" onSubmit={handleSubmit}>
-                            <div className="">
-                                <label htmlFor="name" className="text-sm ms:text-base block mb-2 font-medium text-white/80">
-                                    Name
-                                </label>
-                                <input type="text" 
-                                    name="name" 
-                                    id="name" 
-                                    value={formData.name}
-                                    onChange={handleChange}
-                                    placeholder="Your name"
-                                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white font-normal placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all duration-300"
-                                />
-                            </div>
-
-                            <div className="">
-                                <label htmlFor="email" className="text-sm ms:text-base block mb-2 font-medium text-white/80">
-                                    Email
-                                </label>
-                                <input type="email" 
-                                    name="email" 
-                                    id="email" 
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                    placeholder="your.email@example.com"
-                                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white font-normal placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all duration-300"
-                                />
-                            </div>
-
-                            <div className="">
-                                <label htmlFor="message" className="text-sm ms:text-base block mb-2 font-medium text-white/80">
-                                    Message
-                                </label>
-                                <textarea 
-                                    name="message" 
-                                    id="message" 
-                                    value={formData.message}
-                                    onChange={handleChange}
-                                    rows={5}
-                                    placeholder="Tell me about your project"
-                                    className="w-full px-4 py-3 bg-white/5 resize-none border border-white/10 rounded-xl text-white font-normal placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all duration-300"
-                                />
-                            </div>
-
-                            <div className="flex items-center justify-center">
-                                <button
-                                    type="submit"
-                                    disabled={!isFormValid || isSubmitting}
-                                    className={`rounded-[15px] px-8 py-4 w-full group flex items-center justify-center font-semibold text-lg md:text-xl text-white transition-all duration-300 ${
-                                        !isFormValid
-                                        ? "bg-gray-400 cursor-not-allowed"
-                                        : "bg-linear-to-r from-primary/10 to-primary hover:bg-primary/15 text-white hover:shadow-2xl hover:shadow-primary/30 cursor-pointer"
-                                        
-                                    }`}
-                                    >
-                                    {isSubmitting ? (
-                                        <span className="flex items-center gap-2">
-                                        Sending
-                                        <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                                        </span>
-                                    ) : (
-                                        <span className="flex items-center gap-2">
-                                            Send Message
-                                            <LuSend className="group-hover:translate-x-1 transition-transform" />
-                                        </span>
-                                    )}
-                                </button>
-
-                            </div>
-                        </form>
-                    </div>
-                </motion.div>
-               
-                {/*============ CONTACT INFO ============*/}
-                <div 
-                    className="space-y-8">
-                    <div className="space-y-4">
-                            <motion.h3
-                                variants={fadeUp}
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={{amount: 0.2}} 
-                             className="text-2xl md:text-3xl font-semibold text-white">Let's Connect</motion.h3>
-                            <motion.p 
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={{amount: 0.2}}
-                                variants={zoomIn}
-                                className="text-base md:text-lg font-normal text-white/60 leading-relaxed">
-                             I'm always open to dicussing new projects, creative ideas, or opportunities to be part of your vision, Feel free to reach out!
-                            </motion.p>
-                    </div>
-
-                    <div className="space-y-4">
-                        {/*============ EMAIL ============*/}
-                        <motion.div 
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{amount: 0.2}}
-                            variants={slideRight}
-                            className="">
-                            <div className="group relative p-6 bg-white/5 border border-white/10 rounded-2xl hover:border-primary/30 transition-all duration-500">
-                                <div className="flex items-start gap-4">
-                                    <div className="p-3 bg-linear-to-br from-primary/20 to-primary/20 border border-primary/30 rounded-xl">
-                                        <MdOutlineEmail className="text-base text-primary" />
-                                    </div>
-
-                                    <div className="space-y-1 flex-1">
-                                        <p className="text-sm text-white/60 font-normal">Email</p>
-                                        <a href="mailto:ehapamicheal@gmail.com" className="text-white break-all whitespace-normal hover:text-primary transition-colors duration-300 font-medium">
-                                            ehapamicheal@gmail.com
-                                        </a>
-                                    </div>
-                                </div>
-                                
-                                <div className="absolute inset-0 bg-linear-to-br from-primary/0 to-primary/0 group-hover:from-primary/5 group-hover:to-primary/5 rounded-2xl transition-all duration-300 pointer-events-none" />
-                            </div>
-                        </motion.div>
+                    className="flex flex-col gap-4 order-2 md:order-1">
+                    <a
+                        href={ExternalLinks.bookCallUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="group relative overflow-hidden rounded-3xl bg-primary p-7 text-white transition-transform duration-500 hover:-translate-y-1"
+                    >
+                        <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white/10 blur-2xl transition-transform duration-700 group-hover:scale-150" />
+                        <p className="text-sm text-white/70">Prefer to talk?</p>
+                        <p className="mt-2 text-2xl font-semibold tracking-tight">Book a call</p>
+                        <span className="mt-8 inline-flex items-center gap-2 text-sm font-medium">
+                        Schedule a 30-min call
+                        <ArrowRightIcon className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                        </span>
+                    </a>
+    
+                    <div className="rounded-3xl border border-border bg-surface p-7">
+                        <ul className="space-y-5 text-sm">
+                            <li className="flex items-center gap-3">
+                                <MailIcon className="h-4 w-4 text-muted" />
+                                <a 
+                                    href={`mailto:${ExternalLinks.email}`}
+                                    target="_blank"
+                                    rel="noreferrer noopener" 
+                                    className="transition-colors hover:text-primary">
+                                    {ExternalLinks.email}
+                                </a>
+                            </li>
+                            <li className="flex items-center gap-3">
+                                <IoLocationOutline className="h-4 w-4 text-muted" />
+                                Nigeria
+                            </li>
+                        </ul>
                         
-
-                        {/*============ LOCATION ============*/}
-                        <motion.div
-                            initial="hidden"
-                                whileInView="visible"
-                                viewport={{amount: 0.2}} 
-                            variants={zoomInRight}
-                            className="">
-                            <div className="group relative p-6 bg-white/5 border border-white/10 rounded-2xl hover:border-primary/30 transition-all duration-500">
-                                <div className="flex items-start gap-4">
-                                    <div className="p-3 bg-linear-to-br from-primary/20 to-primary/20 border border-primary/30 rounded-xl">
-                                        <IoLocationOutline  className="text-base text-primary" />
-                                    </div>
-
-                                    <div className="space-y-1 flex-1">
-                                        <p className="text-sm text-white/60 font-normal">Location</p>
-                                        {/* <p className="text-white transition-colors duration-300 font-medium">Ibadan, Nigeria</p> */}
-                                        <p className="text-white transition-colors duration-300 font-medium">Nigeria</p>
-                                    </div>
-                                </div>
-
-                                <div className="absolute inset-0 bg-linear-to-br from-primary/0 to-primary/0 group-hover:from-primary/5 group-hover:to-primary/5 rounded-2xl transition-all duration-300 pointer-events-none" />
-                            </div>
-                        </motion.div> 
-                       
-                    </div>
-
-                    {/*============ CONNECT WITH ME ============*/}
-                    <div className="space-y-4">
-                        <motion.p 
-                            variants={bounceIn}
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{amount: 0.2}}
-                            className="text-sm text-white/60 font-normal">Connect with me</motion.p>
-
-                        <div className="flex gap-3">
+                        <div className="mt-7 flex gap-2 border-t border-border pt-6">
                             {socialLinks.map((link) => (
-                                <motion.div 
-                                    variants={fadeUp}
-                                    key={link.id}
-                                    className="">
+                                <a
+                                key={link.id}
+                                href={link.url}
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                aria-label={link.name}
+                                className="flex size-10 items-center justify-center rounded-full border border-border bg-background text-muted transition-all hover:scale-110 duration-700 hover:border-primary/50 hover:text-primary"
+                                >
+                                 <span className="size-4">
+                                    {link.icon}
+                                 </span>
 
-                                    <a href={link.url} className="flex items-center justify-center w-13 h-13 bg-white/5 rounded-xl border border-white/10 hover:border-primary/50 hover:scale-110 transition-transform duration-700 group" target="_blank" rel="noopener noreferrer" >
-                                        <span className="text-xl text-white/60 group-hover:text-primary transition-colors">{link.icon}</span>
-                                    </a>
-
-                                    
-                                </motion.div>
+                                </a>
                             ))}
                         </div>
                     </div>
-                </div>
+                </motion.div >
+                            
+                {/*============ Form ============*/}
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{amount: 0.2}} 
+                    variants={slideRight}
+                    className="order-1 md:order-2">
+                    <form onSubmit={handleSubmit}
+                        className="flex h-full flex-col gap-4 rounded-3xl border border-border bg-surface py-7 px-4 md:px-7">
+                        <div className="grid gap-4 sm:grid-cols-2">
+                            <div className="grid gap-2 text-sm font-medium">
+                                <label htmlFor="name">
+                                    Name
+                                </label>
 
+                                <input 
+                                    name="name"
+                                    type="text"
+                                    id="name"
+                                    value={formData.name} 
+                                    onChange={handleChange}
+                                    required 
+                                    placeholder="Your name" 
+                                    className={field} 
+                                />
+                            </div>
+
+                            <div className="grid gap-2 text-sm font-medium min-w-0">
+                                <label htmlFor="email">
+                                    Email
+                                </label>
+
+                                <input 
+                                    name="email"
+                                    type="email" 
+                                    id="email"
+                                    value={formData.email} 
+                                    onChange={handleChange}
+                                    required 
+                                    placeholder="jane@company.com"
+                                    className={field} 
+                                />
+                            </div>
+                        </div>
+
+                        <div className="grid flex-1 gap-0.5 text-sm font-medium">
+                            <label htmlFor="message">
+                                Message
+                            </label>
+
+                            <textarea
+                                name="message" 
+                                id="message" 
+                                value={formData.message}
+                                onChange={handleChange}
+                                required
+                                rows={6}
+                                placeholder="Tell me about your project…"
+                                className={`${field} resize-none`}
+                            />
+                        </div>
+
+                        <button
+                            type="submit"
+                            disabled={!isFormValid || isSubmitting}
+                            className={clsx("group inline-flex items-center text-sm text-white font-medium justify-center self-start gap-2 whitespace-nowrap rounded-full px-5 py-2.5 transition-all duration-300 hover:-translate-y-0.5",
+                                !isFormValid
+                                ? "bg-gray-400 cursor-not-allowed"
+                                : "bg-primary hover:-translate-y-0.5 hover:bg-primary-hover hover:shadow-soft-primary cursor-pointer "
+                                 )}
+                            >
+                            {isSubmitting ? (
+                                <span className="flex items-center gap-2">
+                                Sending
+                                <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                                </span>
+                            ) : (
+                                <span className="flex items-center gap-2">
+                                    Send Message
+                                    <LuSend className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 size-4" />
+                                </span>
+                            )}
+                        </button>
+                    </form>
+                </motion.div >
             </div>
-        </motion.div>
-   </div>
+        </div>
+   </section>
   )
 }
 

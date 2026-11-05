@@ -1,31 +1,18 @@
 "use client";
 
-import Image from "next/image";
-import { containerVariants, zoomInLeft, zoomIn } from "@/animations";
+import { zoomIn } from "@/animations";
 import { motion } from "framer-motion";
 import { projectData } from "@/data";
-import { RiExternalLinkLine } from "react-icons/ri";
 import { useState } from "react";
+import SectionHeader from "@/components/ui/SectionHeader";
+import ProjectCard from "@/components/ui/ProjectCard";
+
+const INITIAL_COUNT = 6;
 
 const Projects = () => {
     const [showAllProjects, setShowAllProjects] = useState(false);
 
-    const displayedProjects = showAllProjects ? projectData : projectData.slice(0, 6);
-
-
-    // const handleShowMore = () => {
-    //     setShowAllProjects((prev) => {
-    //         const next = !prev;
-
-    //         // only scroll when collapsing
-    //         if (prev === true) {
-    //         const section = document.getElementById("projects");
-    //         section?.scrollIntoView({ behavior: "smooth", block: "start" });
-    //         }
-
-    //         return next;
-    //     });
-    // };
+    const displayedProjects = showAllProjects ? projectData : projectData.slice(0, INITIAL_COUNT);
 
     const handleShowMore = () => {
         if (showAllProjects) {
@@ -48,101 +35,45 @@ const Projects = () => {
     };
 
   return (
-    <div className="py-20 px-5 md:px-7 xl:px-14 bg-second-bg-color">
-        <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{amount: 0.2}}
-            variants={containerVariants}
-            className="">
-            <motion.h2 
-                initial="hidden"
-                whileInView="visible"
-                viewport={{amount: 0.2}}
-                variants={zoomInLeft}
-                className="text-3xl md:text-4xl xl:text-[48px] font-semibold text-center leading-relaxed text-white">
-                My <span className="text-primary">Projects</span>
-            </motion.h2>
+    <section id="projects" className="py-24 md:py-32 px-4 md:px-6">
+        <div 
+            className="responsive_container lg:w-[90%]">
+            <SectionHeader
+                index="02"
+                label="Selected work"
+                title="Projects I've designed, built and shipped."
+                description="A selection of products and marketing sites, built with care for detail and motion."
+            />
 
-            <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8 mt-12">
-                {displayedProjects.map((project) => (
-                        <motion.div 
-                        initial="hidden"
-                        whileInView="visible"
-                        variants={zoomIn}
-                        key={project.id}
-                        className="h-full">
-                        <div className="h-full flex-col flex group border border-white/10 hover:border-primary/30 bg-white/5 rounded-2xl relative overflow-hidden transition duration-500">
-                            <div className="overflow-hidden relative h-47">
-                                <Image 
-                                    src={project.image}
-                                    alt={project.name}
-                                    className="object-cover transition-transform group-hover:scale-105 duration-700"
-                                    fill
-                                    priority
-                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                />
-
-                                <div className="absolute inset-0 bg-linear-to-t from-black/40 via-black/40 to-transparent opacity-10 group-hover:opacity-90 transition-opacity duration-300" />
-                                
-                                <div className="absolute bottom-4 right-4 flex items-center gap-3">
-                                    <a href={project.url} 
-                                        target="_blank" 
-                                        rel="noopener noreferrer"
-                                        className="p-2.5 group/demo relative bg-second-bg-color/80 backdrop-blur-md rounded-lg border border-white/30 hover:bg-primary/30 hover:border-primary/50 transition-all duration-300 hover:scale-110">
-                                        <RiExternalLinkLine className="text-white text-lg" />
-
-                                        <div className="absolute bottom-full right-0 mb-2 px-3 py-1.5 bg-linear-to-r from-primary/50 via-black/80 to-second-bg-color/80 backdrop-blur-lg pointer-events-none rounded-lg opacity-0 invisible group-hover/demo:opacity-100 group-hover/demo:visible transition-all duration-300 shadow-lg">
-                                            <span className="text-white text-xs font-medium whitespace-nowrap">View demo</span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div className="py-6 px-6 space-y-4">
-                                <div className="space-y-2">
-                                    <h3 className="text-white text-lg ms:text-xl capitalize group-hover:text-primary/60 font-semibold leading-relaxed transition-colors duration-300">
-                                        {project.name}
-                                    </h3>
-                                    {/* <p className="text-white/60 text-sm ms:text-base line-clamp-2">
-                                        {project.description}
-                                    </p> */}
-                                </div>
-
-                                <div className="flex items-center flex-wrap gap-3">
-                                    {project.technologies.map((tech, i) => (
-                                        <span 
-                                            key={i}
-                                            className="px-3 py-1 text-xs capitalize border border-primary/20 font-medium text-primary bg-primary/10 hover:bg-primary/20 transition-colors duration-200 rounded-lg">
-                                            {tech}
-                                        </span>
-                                    ))}            
-                                </div>
-                            </div>
-                        </div>    
-
-                    </motion.div>  
+            <div className="grid md:grid-cols-2 gap-6">
+                {displayedProjects.map((project, i) => (
+                    <ProjectCard key={project.id} project={project} /> 
                 ))}       
             </div>
             
 
             {/*============ Show more and less Button  ============ */}
-            {projectData.length > 6 && (
-                <div className="mt-10 flex justify-center">
+            {projectData.length > INITIAL_COUNT && (
+                <motion.div 
+                    initial="hidden"
+                    whileInView="visible"
+                    variants={zoomIn}
+                    viewport={{ amount: 0.2 }}
+                    className="mt-10 flex justify-center">
                     <button
                         type="button"
                         id="show-more-projects"
                         onClick={handleShowMore}
-                        className="relative inline-flex cursor-pointer items-center justify-center px-4 py-4 bg-transparent border-2 border-primary rounded-xl text-sm md:text-base font-semibold tracking-[1.6px] text-primary overflow-hidden z-10 transition-colors duration-500 before:content-[''] before:absolute before:top-0 before:left-0 before:w-0 before:h-full before:bg-primary before:-z-10 before:transition-all before:duration-500 hover:text-bg-color hover:before:w-full"
+                        className="group inline-flex cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-full border border-border bg-background px-5 py-2.5 text-sm font-medium text-foreground hover:text-primary/90 transition-all duration-300 hover:-translate-y-0.5 hover:border-foreground/30 active:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                     >
                         {showAllProjects ? "Show Less" : "Show More"}
                     </button>
-                </div>
+                </motion.div>
             )}
 
-        </motion.div>
+        </div>
       
-    </div>
+    </section>
   )
 }
 
