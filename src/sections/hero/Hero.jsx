@@ -28,7 +28,7 @@ const Hero = () => {
             initial="hidden"
             animate="visible"
             variants={containerVariants}
-            className="overflow-hidden order-2 lg:order-1"
+            className="overflow-hidden"
           >
             <motion.div
               variants={scaleIn}
@@ -103,7 +103,7 @@ const Hero = () => {
             animate={{ opacity: 1, scale: 1, rotate: 0 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
             // className="relative flex items-center lg:items-start justify-center lg:justify-start order-1 lg:order-2 mx-auto w-full max-w-sm"
-            className="relative order-1 lg:order-2 mx-auto w-full max-w-sm"
+            className="relative mx-auto w-full max-w-sm"
           >
             <div className="absolute -inset-2 md:-inset-3 -z-10 rounded-4xl border border-border bg-surface" />
 

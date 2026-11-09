@@ -11,7 +11,7 @@ const MySkills = () => {
   const getSkillColor = (name) => {
     switch (name) {
       case "React.js": return "text-sky-400";
-      case "Next.js": return "text-black dark:text-white";
+      case "Next.js": return "text-white";
       case "HTML": return "text-orange-500";
       case "CSS": return "text-blue-500";
       case "JavaScript": return "text-yellow-400";
@@ -19,7 +19,7 @@ const MySkills = () => {
       case "TypeScript": return "text-blue-600";
       case "Redux Toolkit": return "text-purple-500";
       case "Git": return "text-orange-600";
-      case "GitHub": return "text-black";
+      case "GitHub": return "text-white";
       case "Figma": return "text-pink-500";
       case "REST API": return "text-orange-400";
       case "Bitbucket": return "text-blue-700";
