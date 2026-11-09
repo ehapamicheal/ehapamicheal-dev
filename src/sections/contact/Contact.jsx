@@ -106,7 +106,7 @@ const Contact = () => {
                         href={ExternalLinks.bookCallUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className="group relative overflow-hidden rounded-3xl bg-primary p-7 text-white transition-transform duration-500 hover:-translate-y-1"
+                        className="group relative overflow-hidden rounded-3xl bg-primary p-7 text-white transition duration-500"
                     >
                         <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white/10 blur-2xl transition-transform duration-700 group-hover:scale-150" />
                         <p className="text-sm text-white/70">Prefer to talk?</p>
